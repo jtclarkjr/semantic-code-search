@@ -9,6 +9,7 @@ from app.core.auth import UserContext, get_current_user
 from app.services.embedding import EmbeddingServiceError
 from app.models.api import (
     GitHubRepositoryCreateRequest,
+    HealthResponse,
     JobResponse,
     LocalRepositoryCreateRequest,
     LoginRequest,
@@ -28,9 +29,9 @@ def get_container(request: Request):
     return request.app.state.container
 
 
-@router.get("/health")
-async def health() -> dict:
-    return {"status": "ok"}
+@router.get("/healthz", response_model=HealthResponse)
+async def health() -> HealthResponse:
+    return HealthResponse(status="ok")
 
 
 @router.post("/auth/login", response_model=LoginResponse)

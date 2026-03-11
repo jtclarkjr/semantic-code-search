@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Literal, Optional
 
 from pydantic import BaseModel, Field
 
@@ -8,6 +8,10 @@ from pydantic import BaseModel, Field
 class LoginRequest(BaseModel):
     email: str
     password: str
+
+
+class HealthResponse(BaseModel):
+    status: Literal["ok"]
 
 
 class PublicClientConfig(BaseModel):
