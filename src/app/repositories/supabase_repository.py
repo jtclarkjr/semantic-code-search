@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from datetime import datetime, timezone
-from typing import Any, Dict, Iterable, List, Optional, Sequence
+from typing import Any, Dict, Iterable, List, Optional, Sequence, SupportsFloat
 
 from app.models.api import SearchRequest
 from common.schemas import RepoBundle
@@ -151,7 +151,7 @@ class SupabaseSearchRepository:
         self,
         repo_id: str,
         bundle: RepoBundle,
-        embeddings: Sequence[Sequence[float]],
+        embeddings: Sequence[Sequence[SupportsFloat]],
     ) -> Dict[str, Any]:
         if len(bundle.chunks) != len(embeddings):
             raise ValueError("Chunk and embedding counts do not match.")
@@ -227,7 +227,7 @@ class SupabaseSearchRepository:
 
     def search_chunks(
         self,
-        query_embedding: Sequence[float],
+        query_embedding: Sequence[SupportsFloat],
         request: SearchRequest,
         access_token: str,
     ) -> List[Dict[str, Any]]:
@@ -278,7 +278,7 @@ class SupabaseSearchRepository:
             return [data]
         return list(data)
 
-    def _coerce_float_list(self, values: Sequence[float]) -> List[float]:
+    def _coerce_float_list(self, values: Sequence[SupportsFloat]) -> List[float]:
         return [float(value) for value in values]
 
     def _repository_identity_key(
