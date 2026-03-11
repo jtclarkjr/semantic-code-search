@@ -43,6 +43,19 @@ uv run semantic-code-search-api
 
 Swagger UI is available at [http://localhost:8000/docs](http://localhost:8000/docs). The OpenAPI schema is exposed at [http://localhost:8000/openapi.json](http://localhost:8000/openapi.json).
 
+Alternative in PyCharm:
+
+1. Open `Run > Edit Configurations`.
+2. Add a new `Python` configuration.
+3. Use the project virtualenv as the interpreter, for example `<project-root>/.venv/bin/python`.
+4. Prefer running `uvicorn` as a module:
+   - `Module name`: `uvicorn`
+   - `Parameters`: `app.main:app --host 0.0.0.0 --port 8000`
+5. Set `Working directory` to `<project-root>`.
+6. Add your app environment variables from `.env` to the run configuration.
+7. If imports do not resolve, mark `<project-root>/src` as a `Sources Root`, or add `PYTHONPATH=<project-root>/src`.
+
+
 5. Install the Rust CLI:
 
 ```bash
