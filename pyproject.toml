@@ -1,0 +1,44 @@
+[project]
+name = "semantic-code-search"
+version = "0.1.0"
+description = "FastAPI + Supabase semantic code search backend."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+  "cryptography>=44.0.0",
+  "fastapi>=0.115.0",
+  "dom-tree-sitter-language-pack>=0.4.0",
+  "pydantic-settings>=2.6.0",
+  "PyJWT>=2.10.0",
+  "python-dotenv>=1.0.1",
+  "supabase>=2.9.1",
+  "torch>=2.2.0",
+  "transformers>=4.49.0,<5",
+  "tree-sitter>=0.23.0",
+  "uvicorn[standard]>=0.34.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3.4",
+  "pytest-asyncio>=0.25.3",
+  "ruff>=0.12.0",
+]
+
+[project.scripts]
+semantic-code-search-api = "app.main:run"
+
+[build-system]
+requires = ["hatchling>=1.27.0"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/app", "src/common"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+target-version = "py39"
+line-length = 100

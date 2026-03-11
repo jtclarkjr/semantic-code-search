@@ -1,0 +1,4 @@
+[workspace]
+members = ["crates/codesearch-cli"]
+resolver = "2"
+

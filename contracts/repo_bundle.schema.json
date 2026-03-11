@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RepoBundle",
+  "type": "object",
+  "required": [
+    "repo_name",
+    "source_type",
+    "source_ref",
+    "metadata",
+    "documents",
+    "chunks"
+  ],
+  "properties": {
+    "repo_name": { "type": "string" },
+    "source_type": {
+      "type": "string",
+      "enum": ["github", "local"]
+    },
+    "source_ref": { "type": "string" },
+    "default_branch": { "type": ["string", "null"] },
+    "latest_commit_sha": { "type": ["string", "null"] },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "documents": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/SourceDocument" }
+    },
+    "chunks": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/SourceChunk" }
+    }
+  },
+  "$defs": {
+    "DocumentKind": {
+      "type": "string",
+      "enum": ["code", "documentation", "commit"]
+    },
+    "SourceDocument": {
+      "type": "object",
+      "required": ["document_id", "kind", "path", "content", "metadata"],
+      "properties": {
+        "document_id": { "type": "string" },
+        "kind": { "$ref": "#/$defs/DocumentKind" },
+        "path": { "type": "string" },
+        "content": { "type": "string" },
+        "title": { "type": ["string", "null"] },
+        "language": { "type": ["string", "null"] },
+        "external_id": { "type": ["string", "null"] },
+        "commit_sha": { "type": ["string", "null"] },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "SourceChunk": {
+      "type": "object",
+      "required": [
+        "chunk_id",
+        "document_id",
+        "kind",
+        "path",
+        "content",
+        "preview",
+        "start_line",
+        "end_line",
+        "metadata"
+      ],
+      "properties": {
+        "chunk_id": { "type": "string" },
+        "document_id": { "type": "string" },
+        "kind": { "$ref": "#/$defs/DocumentKind" },
+        "path": { "type": "string" },
+        "content": { "type": "string" },
+        "preview": { "type": "string" },
+        "start_line": { "type": "integer", "minimum": 1 },
+        "end_line": { "type": "integer", "minimum": 1 },
+        "language": { "type": ["string", "null"] },
+        "commit_sha": { "type": ["string", "null"] },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    }
+  }
+}
+
