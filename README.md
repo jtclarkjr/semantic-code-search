@@ -41,6 +41,8 @@ uv sync --extra dev
 uv run semantic-code-search-api
 ```
 
+Swagger UI is available at [http://localhost:8000/docs](http://localhost:8000/docs). The OpenAPI schema is exposed at [http://localhost:8000/openapi.json](http://localhost:8000/openapi.json).
+
 5. Install the Rust CLI:
 
 ```bash
