@@ -108,7 +108,7 @@ codesearch ingest . --name react-frontend
 ### What gets skipped
 
 - Build and generated output is ignored during local ingest.
-- Common frontend artifacts such as `storybook-static`, `*.bundle.js`, `*.iframe.bundle.js`, `manager-bundle.*`, and `*.chunk.js` are excluded so they do not pollute search results.
+- Common frontend artifacts such as `*.bundle.js`, `*.iframe.bundle.js`, `manager-bundle.*`, and `*.chunk.js` are excluded so they do not pollute search results.
 
 ### After re-ingest
 
